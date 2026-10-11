@@ -1,0 +1,42 @@
+Find Anything — AI Visual Search Agent
+======================================
+
+QUICK START (2 commands)
+------------------------
+  1)  npm install
+  2)  npm run dev          →  http://localhost:5180
+
+Then in the app:
+  • Click "Start Visual Search"
+  • Settings opens → paste YOUR OWN Gemini API key  (https://aistudio.google.com/apikey)
+      - "This tab only"     = sessionStorage, cleared on tab close (default)
+      - "Encrypted on this device" = AES-GCM + PBKDF2 before localStorage
+      - "Never stored"      = memory only
+  • Upload a photo of the object you want to find
+  • Press "Start visual search" → allow camera (+ mic) → sweep the room slowly
+  • Shortcuts: M = mic · C = camera · R = re-scan · Space = pause/resume
+
+IMPORTANT
+---------
+  • Camera & microphone need HTTPS or http://localhost. To test on a phone,
+    expose port 5180 over HTTPS (tunnel/reverse proxy), do NOT use http://<ip>.
+  • No API key is bundled. BYOK only — the key lives in your browser.
+  • Free-tier note: use the Flash-class models offered in the dropdown. Pro /
+    newest flagship models were reported failing on free-tier keys, so they are
+    not the default. Settings → "Verify key & list models" shows what YOUR key
+    can actually use.
+  • If the Gemini Live voice session is unavailable for your key, the app says so
+    and switches to push-to-talk (browser speech + typed chat + speaker).
+
+PRODUCTION / OTHER COMMANDS
+---------------------------
+  npm run build     typecheck + build server + build SPA (dist/)
+  npm start         serve the built app + API on PORT (default 5180)
+  npm test          52 unit tests (vision math, ZNCC tracker, engine states, vault)
+  npm run e2e       browser smoke test — needs: npm i -D playwright && npx playwright install chromium
+
+Note: this zip already contains a prebuilt dist/ and dist-server/, so `npm start`
+works immediately after `npm install`. On hosting platforms that strip build
+folders, just run `npm run build` first.
+
+Docs: README.md · docs/ARCHITECTURE.md · docs/TESTING.md · docs/MODELS.md
